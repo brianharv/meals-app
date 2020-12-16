@@ -19,7 +19,7 @@ const CategoryMealScreen = props => {
           props.navigation.navigate('MealDetail') // alt syntax
           }}
         />
-      <Button title="Got Back" onPress={() => {
+      <Button title="Go Back" onPress={() => {
         props.navigation.goBack(); //could also use pop() but only if in stacknavigator
       }}
       />  
