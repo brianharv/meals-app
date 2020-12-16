@@ -1,16 +1,27 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
-
+import MealItem from '../components/MealItem';
 
 import { CATEGORIES, MEALS } from '../data/dummy-data';
-import Category from '../models/category';
 
 
 const CategoryMealScreen = props => {
-  
   const renderMealItem = itemData => {
     return (
-      <View><Text>{itemData.item.title}</Text></View>
+      <MealItem 
+        title={itemData.item.title}
+        duration={itemData.item.duration}
+        complexity={itemData.item.complexity}
+        affordability={itemData.item.affordability}
+        image={itemData.item.imageUrl}
+        onSelectMeal={() => { //you have to pass in the props.navigation.navigate here in order to get to the next screen.
+          props.navigation.navigate(
+            {routeName: 'MealDetail',
+            params: {
+              mealId: itemData.item.id //remember you can call the key whatever tou want here. it's the value that is fixed.
+            }}
+          )
+        }}/>
     )
   };
 
@@ -25,6 +36,7 @@ const CategoryMealScreen = props => {
         data={displayedMeals}
         keyExtractor={(item, index) => item.id}
         renderItem={renderMealItem}
+        style={{width: '100%'}}
       />
     </View>
   )
@@ -32,9 +44,7 @@ const CategoryMealScreen = props => {
 
 CategoryMealScreen.navigationOptions = (navigationData) => {
   const catId = navigationData.navigation.getParam('categoryId');
-
   const selectedCategory = CATEGORIES.find(cat => cat.id === catId);
-
   return {
     headerTitle: selectedCategory.title
   };
