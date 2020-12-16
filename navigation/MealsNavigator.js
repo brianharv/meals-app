@@ -1,6 +1,8 @@
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { Ionicons } from '@expo/vector-icons';
+import React from 'react';
 
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealScreen from '../screens/CategoryMealsScreen';
@@ -26,8 +28,21 @@ const MealsNavigator = createStackNavigator({
 );
 
 const MealsFavTabNavigator = createBottomTabNavigator({
-  Meals: MealsNavigator,
-  Favorites: FavoritesScreen
+  Meals: {screen: MealsNavigator, navigationOptions: {
+    tabBarIcon: (tabInfo) => {
+      return <Ionicons name='ios-restaurant' size={25} color={tabInfo.tintColor} />
+    } 
+  }},
+  Favorites: {screen: FavoritesScreen, navigationOptions: {
+    tabBarIcon: (tabInfo) => {
+      return <Ionicons name='ios-star' size={25} color={tabInfo.tintColor} />
+    } 
+  }}
+},
+{
+  tabBarOptions: {
+    activeTintColor: Colors.accentColor
+  }
 });
 
 export default createAppContainer(MealsFavTabNavigator); // MealsNavigator is now inside the MealsFavTabNavigator and MealsFavTabNavigator start with MealNavigator visible initially. 
