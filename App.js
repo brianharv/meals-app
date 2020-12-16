@@ -6,6 +6,11 @@ import AppLoading from 'expo-app-loading';
 import { enableScreens } from 'react-native-screens';
 
 import MealsNavigator from './navigation/MealsNavigator';
+import { YellowBox } from "react-native";
+YellowBox.ignoreWarnings([""]);
+// import { LogBox } from 'react-native';
+
+// LogBox.ignoreLogs(['Warning: ...']);
 
 enableScreens();
 

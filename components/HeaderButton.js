@@ -8,7 +8,8 @@ import { Platform } from 'react-native';
 const CustomHeaderButton = props => {
   return (
     <HeaderButton 
-      {...props} IconComponent={Ionicons} 
+      {...props}
+      IconComponent={Ionicons} 
       iconSize={23} 
       color={Platform.OS === 'android' ? 'white' : Colors.primaryColor}
     /> //we are forwarding the props with {...props}

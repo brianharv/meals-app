@@ -34,7 +34,7 @@ MealDetailScreen.navigationOptions = (navigationData) => {
         onPress={() => {
           console.log('this star works')
         }}
-      /> {/* you can add more buttons up here, just wrap them in Item elements */}
+      /> 
     </HeaderButtons>
   };
 }
