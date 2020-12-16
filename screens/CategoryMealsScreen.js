@@ -1,28 +1,31 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 
 
-import { CATEGORIES } from '../data/dummy-data';
+import { CATEGORIES, MEALS } from '../data/dummy-data';
+import Category from '../models/category';
 
 
 const CategoryMealScreen = props => {
+  
+  const renderMealItem = itemData => {
+    return (
+      <View><Text>{itemData.item.title}</Text></View>
+    )
+  };
 
   const catId = props.navigation.getParam('categoryId'); // we are pulling this from screen we were just sent from via the navigator, in this case CategoriesScreen // this also takes the param key as a string arg.
 
-  const selectedCategory = CATEGORIES.find(cat => cat.id === catId);
+  const displayedMeals = MEALS.filter(
+    meal => meal.categoryIds.indexOf(catId) >= 0
+    );
   return (
     <View style={styles.screen}>
-      <Text>The Category Meal Screen</Text>
-      <Text>{selectedCategory.title}</Text>
-      <Button title="Meal Details"
-        onPress={() => {
-          props.navigation.navigate('MealDetail') // alt syntax
-          }}
-        />
-      <Button title="Go Back" onPress={() => {
-        props.navigation.goBack(); //could also use pop() but only if in stacknavigator
-      }}
-      />  
+      <FlatList
+        data={displayedMeals}
+        keyExtractor={(item, index) => item.id}
+        renderItem={renderMealItem}
+      />
     </View>
   )
 };
