@@ -13,10 +13,10 @@ const MealList = props => {
         image={itemData.item.imageUrl}
         onSelectMeal={() => { //you have to pass in the props.navigation.navigate here in order to get to the next screen.
           props.navigation.navigate(
-            {routeName: 'MealDetail',
+            {routeName: 'MealDetail', 
             params: {
               mealId: itemData.item.id, //remember you can call the key whatever tou want here. it's the value that is fixed.
-              mealTitle: itemData.item.title
+              mealTitle: itemData.item.title //this is the most effective way to pass params 
             }}
           )
         }}/>
