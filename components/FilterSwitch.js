@@ -21,14 +21,9 @@ const styles = StyleSheet.create({
   filterContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '80%'
-  },
-  // label: {
-  //   fontFamily: 'open-sans-bold',
-  //   fontSize: 22,
-  //   margin: 20,
-  //   textAlign: 'center'
-  // }
+    width: '80%',
+    marginVertical: 15
+  }
 });
 
 export default FilterSwitch;

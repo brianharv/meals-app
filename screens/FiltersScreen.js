@@ -1,16 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../components/HeaderButton';
 import FilterSwitch from '../components/FilterSwitch';
 
 const FiltersScreen = props => {
-  
+  const { navigation } = props;
+
   const [isGlutenFree, setIsGlutenFree] = useState(false);
   const [isVegan, setIsVegan] = useState(false);
   const [isVegetarian, setIsVegetarian] = useState(false);
   const [isLactoseFree, setIsLactoseFree] = useState(false);
 
+  const saveFilters = useCallback(() => {
+    const appliedFilters = {
+      glutenFree: isGlutenFree,
+      vegan: isVegan,
+      vegetarian: isVegetarian,
+      lactoseFree: isLactoseFree
+    };
+
+  }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian]);
+
+  useEffect(() => {
+    navigation.setParams({save: saveFilters}); //just pointing at it, don't call it (no parens)
+  }, [saveFilters]);
 
   return (
     <View style={styles.screen}>
@@ -18,7 +32,7 @@ const FiltersScreen = props => {
       <FilterSwitch
         label='Gluten-Free'
         state={isGlutenFree}  
-        onChange={newValue => setIsGlutenFree(newValue)}
+        onChange={newValue => setIsGlutenFree(newValue)} //We send onChange with an updated value to the FilterSwitch prop as props.onValueChange
         />
       <FilterSwitch
         label='Lactose-Free'
@@ -49,6 +63,12 @@ FiltersScreen.navigationOptions = (navData) => {
         }}
         />
       </HeaderButtons>
+      ),  
+    headerRight: (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item title="Save" iconName='ios-save' onPress={navData.navigation.getParam('save')}
+        />
+      </HeaderButtons>
       )  
   };
 }; 
@@ -58,11 +78,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center'
   },
-  // filterContainer: {
-  //   flexDirection: 'row',
-  //   justifyContent: 'space-between',
-  //   width: '80%'
-  // },
   title: {
     fontFamily: 'open-sans-bold',
     fontSize: 22,
