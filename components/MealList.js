@@ -15,7 +15,8 @@ const MealList = props => {
           props.navigation.navigate(
             {routeName: 'MealDetail',
             params: {
-              mealId: itemData.item.id //remember you can call the key whatever tou want here. it's the value that is fixed.
+              mealId: itemData.item.id, //remember you can call the key whatever tou want here. it's the value that is fixed.
+              mealTitle: itemData.item.title
             }}
           )
         }}/>

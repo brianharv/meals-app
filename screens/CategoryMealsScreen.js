@@ -1,15 +1,20 @@
 import React from 'react';
-import { } from 'react-native';
 import MealList from '../components/MealList';
+import { useSelector } from 'react-redux';
 
-import { CATEGORIES, MEALS } from '../data/dummy-data';
+import { CATEGORIES } from '../data/dummy-data';
 
 
 const CategoryMealScreen = props => {
+
   const catId = props.navigation.getParam('categoryId'); // we are pulling this from screen we were just sent from via the navigator, in this case CategoriesScreen // this also takes the param key as a string arg.
-  const displayedMeals = MEALS.filter(
+
+  const availableMeals = useSelector(state => state.meals.filteredMeals)
+
+  const displayedMeals = availableMeals.filter(
     meal => meal.categoryIds.indexOf(catId) >= 0
     );
+
   return (
     <MealList listData={displayedMeals} navigation={props.navigation} />
   )
