@@ -23,6 +23,9 @@ const MealDetailScreen = props => {
       <Text key={index}>{ingredient}</Text>
       ))}
       <Text style={styles.title}>Steps</Text>
+      {selectedMeal.steps.map((step, index) => (
+        <Text key={index}>{step}</Text>
+      ))}
       <Text>List of Steps...</Text>
     </ScrollView>
   )
