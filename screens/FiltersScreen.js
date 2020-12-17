@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { HeaderTitle } from 'react-navigation-stack';
 
 const FiltersScreen = props => {
   return (
@@ -8,6 +9,10 @@ const FiltersScreen = props => {
     </View>
   )
 };
+
+FiltersScreen.navigationOptions = ({
+  headerTitle: 'Filter Meals'
+});
 
 const styles = StyleSheet.create({
 screen: {
