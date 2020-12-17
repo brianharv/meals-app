@@ -5,6 +5,8 @@ import { MEALS } from '../data/dummy-data';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../components/HeaderButton';
 import DefaultText from '../components/DefaultText';
+import ListItem from '../components/ListItem';
+
 
 const MealDetailScreen = props => {
   const mealId = props.navigation.getParam('mealId');
@@ -20,13 +22,12 @@ const MealDetailScreen = props => {
       </View>
       <Text style={styles.title}>Ingredients</Text>
       {selectedMeal.ingredients.map((ingredient, index) => (
-      <Text key={index}>{ingredient}</Text>
+      <ListItem key={index}>{ingredient}</ListItem>
       ))}
       <Text style={styles.title}>Steps</Text>
       {selectedMeal.steps.map((step, index) => (
-        <Text key={index}>{step}</Text>
+        <ListItem key={index}>{step}</ListItem>
       ))}
-      <Text>List of Steps...</Text>
     </ScrollView>
   )
 };
