@@ -12,21 +12,29 @@ import { Platform } from 'react-native';
 import Colors from '../constants/Colors';
 import FavoritesScreen from '../screens/FavoritesScreen';
 
+const defaultStackNavOptions = {
+  headerStyle: {
+    backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : ''
+  },
+  headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor
+}
+
 
 const MealsNavigator = createStackNavigator({
   Categories: CategoriesScreen,
   CategoryMeals: CategoryMealScreen,
   MealDetail: MealDetailScreen
-}, 
-{
-  defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : ''
-      },
-      headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor
-    }
-  }
-);
+}, {
+  defaultStackNavigationOptions: defaultStackNavOptions
+});
+
+const FavNavigator = createStackNavigator({
+  Favorites: FavoritesScreen,
+  MealDetail: MealDetailScreen
+}, {
+  defaultStackNavigationOptions: defaultStackNavOptions
+});
+
 
 const tabScreenConfig = {
   Meals: {
@@ -39,7 +47,7 @@ const tabScreenConfig = {
   tabBarColor: Colors.primaryColor
 },
   Favorites: {
-    screen: FavoritesScreen, 
+    screen: FavNavigator, 
     navigationOptions: {
     tabBarIcon: (tabInfo) => {
       return <Ionicons name='ios-star' size={25} color={tabInfo.tintColor} />
@@ -59,6 +67,6 @@ const MealsFavTabNavigator =
         tabBarOptions: {
           activeTintColor: Colors.accentColor
         }
-    });
+    });    
 
 export default createAppContainer(MealsFavTabNavigator); // MealsNavigator is now inside the MealsFavTabNavigator and MealsFavTabNavigator start with MealNavigator visible initially. 
