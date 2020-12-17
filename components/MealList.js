@@ -1,9 +1,12 @@
 import React from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
 import MealItem from '../components/MealItem';
+import { useSelector } from 'react-redux';
 
 const MealList = props => {
+  const favoriteMeals = useSelector(state => state.meals.favoriteMeals)
   const renderMealItem = itemData => {
+    const isFavorite = favoriteMeals.find(meal => meal.id === itemData.item.id)
     return (
       <MealItem 
         title={itemData.item.title}
@@ -16,7 +19,8 @@ const MealList = props => {
             {routeName: 'MealDetail', 
             params: {
               mealId: itemData.item.id, //remember you can call the key whatever tou want here. it's the value that is fixed.
-              mealTitle: itemData.item.title //this is the most effective way to pass params 
+              mealTitle: itemData.item.title, //this is the most effective way to pass params 
+              isFav: isFavorite
             }}
           )
         }}/>
