@@ -1,4 +1,3 @@
-README Temp
 
 # _Meal-App_
 
@@ -8,7 +7,7 @@ README Temp
 
 
 ####
-![](./assets/meal-app-demo-2.gif)
+<img src="./assets/meal-app-demo-2.gif" width="200" height="300">
 
 ## Live Demo Instructions:
 * To use the live version of Meal-App, first download the Expo.io client from [Apple App Store](https://apps.apple.com/us/app/expo-client/id982107779) or [Google Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en_US&gl=US).
