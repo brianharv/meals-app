@@ -27,6 +27,7 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "An Android and IOS compatible app that allows users to navigate through different meals, filter results, and view recipes for each meal. "
   }
 }
